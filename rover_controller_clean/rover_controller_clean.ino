@@ -1,5 +1,5 @@
 //This is the main controller program for the Venus rovers
-//Group 19
+//Group 12
 //Cameron Weibel
 
 //Included libraries
