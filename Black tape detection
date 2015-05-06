@@ -1,0 +1,43 @@
+/*
+  This is the code for detecting the black tape with the SFH 309 
+  and the LD 271 with smoothing.
+  Group 12
+  Annekoos Schaap
+*/
+
+const int numReadings = 10;
+
+int readings[numReadings];
+int index = 0;
+int total = 0;
+int average = 0;
+
+int sensorValue = analogRead(A0);
+
+void setup() {
+  Serial.begin(9600);
+  for (int thisReading = 0; thisReading < numReadings; thisReading++)
+    readings[thisReading] = 0;
+
+}
+
+void loop() {
+  total = total - readings[index];
+  readings[index] = analogRead(sensorValue);
+  total = total + readings[index];
+  index = index + 1;
+  
+  if (index >= numReadings)
+    index = 0;
+    
+  average = total / numReadings;
+  Serial.println(average);
+  if (average <= 658){
+    Serial.println("White");
+  }
+  else {
+    Serial.println("Black");
+  }
+  delay(100);
+
+}
